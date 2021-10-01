@@ -7,8 +7,8 @@ public abstract class Item : MonoBehaviour, IPickable
 {
     public string Name => _name;
     public string _name;
-    public Character Owner => _owner;
-    public Character _owner;
+    public Actor Owner => _owner;
+    public Actor _owner;
 
     private SphereCollider _sphereCollider;
 
@@ -32,7 +32,7 @@ public abstract class Item : MonoBehaviour, IPickable
     }
     
 
-    public virtual void BePicked(Character _picker)
+    public virtual void BePicked(Actor _picker)
     {
         SetOwner(_picker);
         transform.position = _owner.transform.position;
@@ -43,7 +43,7 @@ public abstract class Item : MonoBehaviour, IPickable
         _owner = null;
     }
 
-    public bool IsInrange(Character _picker)
+    public bool IsInrange(Actor _picker)
     {
         throw new System.NotImplementedException();
     }
@@ -53,7 +53,7 @@ public abstract class Item : MonoBehaviour, IPickable
         Debug.Log("Reloading");
     }
     
-    public virtual void SetOwner(Character _picker)
+    public virtual void SetOwner(Actor _picker)
     {
         _owner = _picker;
     }

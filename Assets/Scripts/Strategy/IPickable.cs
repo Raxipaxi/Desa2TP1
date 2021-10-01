@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IPickable
 {
     string Name { get; }
-    Character Owner { get; }
-    public void BePicked(Character _picker);
+    Actor Owner { get; }
+    public void BePicked(Actor _picker);
     
 }

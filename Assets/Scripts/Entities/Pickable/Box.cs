@@ -5,7 +5,7 @@ using UnityEngine;
 public class Box : Item
 {
     
-    public override void BePicked(Character _picker)
+    public override void BePicked(Actor _picker)
     {
         SetOwner(_picker);
         Resolve();
@@ -22,7 +22,7 @@ public class Box : Item
         transform.parent = _owner.transform;
     }
 
-    public override void SetOwner(Character _picker)
+    public override void SetOwner(Actor _picker)
     {
         _owner = _picker;
     }
@@ -32,9 +32,9 @@ public class Box : Item
         
         if (_picker.gameObject.layer == hittableMask && Input.GetKey(KeyCode.E))
         {
-            if (_picker.GetComponent<Character>()!=null)
+            if (_picker.GetComponent<Actor>()!=null)
             {
-                BePicked(_picker.GetComponent<Character>());
+                BePicked(_picker.GetComponent<Actor>());
             }
            
         }

@@ -13,7 +13,7 @@ public class Potion : Item
     {
         hittableMask = LayerMask.NameToLayer("Actor");
     }
-    public override void BePicked(Character owner)
+    public override void BePicked(Actor owner)
     {
         SetOwner(owner);
         Debug.Log($"{name} Apreta E");
@@ -24,7 +24,7 @@ public class Potion : Item
         // }
     }
 
-    public void Resolve(Character _user)
+    public void Resolve(Actor _user)
     {
         Debug.Log("Deberia curar");
         if (_user.MaxLife != _user.CurrentLife)
@@ -42,9 +42,9 @@ public class Potion : Item
         
         if (picker.gameObject.layer == hittableMask)
         {
-            if (picker.GetComponent<Character>()!=null)
+            if (picker.GetComponent<Actor>()!=null)
             {
-                BePicked(picker.GetComponent<Character>());
+                BePicked(picker.GetComponent<Actor>());
             }
            
         }

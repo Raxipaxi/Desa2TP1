@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class Character : Actor
+public class Player : Actor
 {
     //[SerializeField] private Gun _weapon;
     //[SerializeField] private Item _item;
@@ -12,13 +8,14 @@ public class Character : Actor
     private bool isAttacking = false;
     private Transform _transform; 
     private Rigidbody _rb;
+    protected iInput _input;
 
     #region Unity Methods
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-
+        
     }
 
     private void Start()
@@ -32,15 +29,13 @@ public class Character : Actor
     #region Actions
     public void Move(Vector3 dir)
     {
-        // transform.position = transform.position + dir;
-        Rotate(dir);
         dir *= speed;
         dir.y = _rb.velocity.y;
         _rb.velocity = dir;
   
     }
 
-    public void Rotate(Vector3 dir)
+    public void LookAt(Vector3 dir)
     {
         _transform.forward = dir.normalized;
     }

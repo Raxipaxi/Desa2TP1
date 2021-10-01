@@ -4,7 +4,7 @@
        Idle,
        Move,
        Shoot,
-       Explode,
+       Dead,
        Heal,
        Damage
    }

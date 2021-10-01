@@ -8,13 +8,13 @@ using UnityEngine;
      [SerializeField] private int _damage = 10;
      private void OnTriggerEnter(Collider other)
      {
-         if (other.GetComponent<Character>() != null)
+         if (other.GetComponent<Actor>() != null)
          {
-             BePicked(other.GetComponent<Character>());
+             BePicked(other.GetComponent<Actor>());
          }
      }
 
-     public override void BePicked(Character _picker)
+     public override void BePicked(Actor _picker)
      {
          if (_picker.gameObject.layer == hittableMask)
          {

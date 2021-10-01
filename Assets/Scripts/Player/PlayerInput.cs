@@ -1,16 +1,16 @@
-using System;
 using UnityEngine;
 
-public class PlayerInput :  MonoBehaviour
+public class PlayerInput : MonoBehaviour,  iInput
 {
     #region Properties
-    
-    private Character _character ;//sacar desp
+    public float GetH => _xAxis;
+    public float GetV => _zAxis;
+    private Player _character ;//sacar desp
     private Vector3 _mousePointer;
     float _xAxis;
     float _zAxis;
     [Header("The canon")]
-    public Transform _canon;
+    private Transform _canon;
 
     public float adjustSensitivity = 1000f;
 
@@ -22,7 +22,7 @@ public class PlayerInput :  MonoBehaviour
 
     private void Awake()
     {
-        _character = GetComponent<Character>();
+        _character = GetComponent<Player>();
     }
 
 
@@ -35,12 +35,12 @@ public class PlayerInput :  MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-        GetMousePosition();
-        GetInputs();
-        GiveOrder();
-    }
+    // void Update()
+    // {
+    //     GetMousePosition();
+    //     GetInputs();
+    //     GiveOrder();
+    // }
 
     #region Methods
 
@@ -54,9 +54,7 @@ public class PlayerInput :  MonoBehaviour
         _xAxis = Input.GetAxis("Horizontal");
         _zAxis = Input.GetAxis("Vertical");
 
-        _zAxis = _zAxis * _character.GetSpeed() * Time.deltaTime;
-        _xAxis = _xAxis * _character.GetSpeed() * Time.deltaTime;
-        
+       
     }
 
     void GiveOrder()
@@ -68,7 +66,7 @@ public class PlayerInput :  MonoBehaviour
             _character.Move(dir);
         }
 
-        RotateCanon();
+        
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -78,15 +76,31 @@ public class PlayerInput :  MonoBehaviour
 
     void RotateCanon()
     {
-        // currPos = _camera.ScreenToWorldPoint(_transform.position);
-        // float angle = Vector3.Angle(currPos, _mousePointer);
-        // _canon.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
-
         var dir = _canon.position;
         _canon.forward = new Vector3(_mousePointer.x - dir.x, dir.y, _mousePointer.z - dir.z);
-
     }
 
     #endregion
 
+
+    public bool IsMoving()
+    {
+        return (_xAxis != 0 || _zAxis != 0);
+    }
+
+    public bool IsShooting()
+    {
+        return Input.GetMouseButton(0);
+    }
+    public void UpdateInputs()
+    {
+        _xAxis = Input.GetAxis("Horizontal");
+        _zAxis = Input.GetAxis("Vertical");
+        RotateCanon();
+    }
+
+    public Transform GetCanonTr()
+    {
+        return _canon;
+    }
 }
