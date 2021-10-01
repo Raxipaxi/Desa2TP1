@@ -26,7 +26,7 @@ public class PlayerMoveState<T> : State<T>
         {
             Vector3 dir = new Vector3(h, 0, v);
             _player.Move(dir);
-            _player.LookAt(dir.normalized);
+            _player.LookAt(dir);
         }
         
         if (_playerInput.IsShooting())

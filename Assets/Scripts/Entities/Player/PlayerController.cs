@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         move.AddTransition(PlayerStates.Dead, dead);
         
         // Shoot State
-        move.AddTransition(PlayerStates.Idle, idle);
+        shoot.AddTransition(PlayerStates.Idle, idle);
         
         _fsm = new FSM<PlayerStates>();
         // Set init state
@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
     }
     
-
     #endregion
 
 }
