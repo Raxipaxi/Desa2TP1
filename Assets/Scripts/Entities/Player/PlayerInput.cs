@@ -5,7 +5,6 @@ public class PlayerInput : MonoBehaviour,  iInput
     #region Properties
     public float GetH => _xAxis;
     public float GetV => _zAxis;
-    private Player _character ;//sacar desp
     private Vector3 _mousePointer;
     float _xAxis;
     float _zAxis;
@@ -20,28 +19,11 @@ public class PlayerInput : MonoBehaviour,  iInput
 
     #endregion
 
-    private void Awake()
-    {
-        _character = GetComponent<Player>();
-    }
-
-
     private void Start()
     {
         _camera = Camera.main;
-        _transform = transform;
-        
     }
-
-
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     GetMousePosition();
-    //     GetInputs();
-    //     GiveOrder();
-    // }
-
+    
     #region Methods
 
     void GetMousePosition()
