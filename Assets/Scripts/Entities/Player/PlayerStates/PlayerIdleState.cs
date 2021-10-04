@@ -17,6 +17,7 @@ public class PlayerIdleState<T> : State<T>
 
     public override void Execute()
     {
+        _player.Idle();
         _playerInput.UpdateInputs();
         if (_playerInput.IsMoving())
         {

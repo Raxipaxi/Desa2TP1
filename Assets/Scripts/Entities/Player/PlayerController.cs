@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         if (_player != null)
         {
             _fsm.OnUpdate();
+            
         }
     }
     #endregion

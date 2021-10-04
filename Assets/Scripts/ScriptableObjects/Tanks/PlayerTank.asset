@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac6f912e412c254fa2b7ca6fc27c3c9, type: 3}
-  m_Name: Shotgun
+  m_Script: {fileID: 11500000, guid: 373279eb17c9b9c49a5882ef1f5ad792, type: 3}
+  m_Name: PlayerTank
   m_EditorClassIdentifier: 
-  _damage: 3
-  _fireRate: 7
-  _magazineSize: 2
-  _ammo: 7
-  _bulletPref: {fileID: 2880128624345298234, guid: cc15b90995da43047b9030ead648790d, type: 3}
+  _life: 100
+  _speed: 10
+  _shootCd: 1

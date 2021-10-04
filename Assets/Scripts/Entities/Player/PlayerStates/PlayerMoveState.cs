@@ -25,7 +25,7 @@ public class PlayerMoveState<T> : State<T>
         if (_playerInput.IsMoving())
         {
             Vector3 dir = new Vector3(h, 0, v);
-            _player.Move(dir);
+            _player.Move(dir.normalized, _player.GetSpeed());
             _player.LookAt(dir);
         }
         

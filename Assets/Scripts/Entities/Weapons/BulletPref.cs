@@ -9,7 +9,7 @@ public class BulletPref : MonoBehaviour
 {
     #region Properties
     [SerializeField] private float speed = 20f;
-    [SerializeField] private Gun _owner;
+    // [SerializeField] private Gun _owner;
     private LayerMask hittableMask;
     [SerializeField] private float _lifeTime = 3f;
 
@@ -35,10 +35,6 @@ public class BulletPref : MonoBehaviour
         _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
 
-    public void SetOwner(Gun owner)
-    {
-        _owner = owner;
-    }
     private void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -50,7 +46,7 @@ public class BulletPref : MonoBehaviour
     {
         if (other.gameObject.layer == hittableMask)
         { 
-            other.GetComponent<Actor>()?.TakeDamage(_owner.Weapon.Damage); 
+            other.GetComponent<Actor>()?.TakeDamage(10); 
         }
     }
 }

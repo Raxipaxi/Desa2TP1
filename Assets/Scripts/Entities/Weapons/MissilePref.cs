@@ -8,11 +8,10 @@ using UnityEngine.PlayerLoop;
 public class MissilePref : MonoBehaviour
 {
     #region Properties
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private Gun _owner;
-    private LayerMask hittableMask;
+   private LayerMask hittableMask;
     [SerializeField] private float _lifeTime = 3f;
-
+    public Missiles _missile;
+    
     private Collider _collider;
     private Rigidbody _rigidbody;
     #endregion
@@ -34,14 +33,9 @@ public class MissilePref : MonoBehaviour
         _rigidbody.isKinematic = true;
         _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
-
-    public void SetOwner(Gun owner)
-    {
-        _owner = owner;
-    }
     private void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * _missile.Speed * Time.deltaTime;
         _lifeTime -= Time.deltaTime;
         if (_lifeTime<=0) Destroy(gameObject);
     }
@@ -50,7 +44,7 @@ public class MissilePref : MonoBehaviour
     {
         if (other.gameObject.layer == hittableMask)
         { 
-            other.GetComponent<Actor>()?.TakeDamage(_owner.Weapon.Damage); 
+            other.GetComponent<Actor>()?.TakeDamage(_missile.Damage); 
         }
     }
 }
