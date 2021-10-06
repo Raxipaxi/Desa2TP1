@@ -6,7 +6,7 @@ public class Player : Actor
 
     #region Properties
 
-    [SerializeField] private Transform _canon;
+    [SerializeField] private Transform canon;
 
     private Transform _transform; 
     private Rigidbody _rb;
@@ -15,7 +15,6 @@ public class Player : Actor
     private float _nextFire;
     public AmmoManager _ammo;
     public MissileFactory _ammoFactory;
-    
     
     #endregion
 
@@ -57,7 +56,9 @@ public class Player : Actor
     {
         if (Time.time > _nextFire && !_ammo.GetIsEmpty())
         {
-            _ammoFactory.Create(MissilesID.PlayerMiss, _canon,Quaternion.Euler(_canon.forward));
+            _ammo.UseAmmo(1);
+            var missile = _ammoFactory.Create(MissilesID.PlayerMiss, canon);
+            missile.transform.forward = canon.forward;
             _nextFire = Time.time + _tank.ShootCd;
         }
     }

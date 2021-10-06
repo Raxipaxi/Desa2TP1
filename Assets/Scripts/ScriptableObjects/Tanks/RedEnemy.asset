@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373279eb17c9b9c49a5882ef1f5ad792, type: 3}
   m_Name: RedEnemy
   m_EditorClassIdentifier: 
-  _life: 120
-  _speed: 2.5
-  _weapon: {fileID: 0}
+  _life: 80
+  _speed: 15
+  _shootCd: 1.5
+  _maxAmmo: 1000
+  _initAmmo: 1000
