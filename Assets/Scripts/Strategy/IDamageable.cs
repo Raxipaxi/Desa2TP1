@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    float CurrentLife { get; }
-    float MaxLife { get; }
-    void TakeDamage(float x);
+    int CurrentLife { get; }
+    int MaxLife { get; }
+    void TakeDamage(int x);
     void Die();
 }

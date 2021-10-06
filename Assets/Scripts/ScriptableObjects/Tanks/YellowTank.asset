@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9a010d5800a9f4ea876e4deba8aa2f, type: 3}
-  m_Name: NormalMissile
+  m_Script: {fileID: 11500000, guid: 373279eb17c9b9c49a5882ef1f5ad792, type: 3}
+  m_Name: YellowTank
   m_EditorClassIdentifier: 
-  _damage: 20
-  _speed: 10
+  _life: 0
+  _speed: 0
+  _shootCd: 0
+  _maxAmmo: 0
+  _initAmmo: 0

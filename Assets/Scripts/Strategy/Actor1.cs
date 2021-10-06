@@ -3,17 +3,17 @@ using System;
 
 public class Actor1 : MonoBehaviour, IDamageable, iMobile
 {
-    public float CurrentLife => _life;
+    public int CurrentLife => _life;
     
-    [SerializeField]private float _life = 100;
+    [SerializeField]private int _life = 100;
 
-    public float MaxLife => _maxLife;
-    [SerializeField]private float _maxLife = 100;
+    public int MaxLife => _maxLife;
+    [SerializeField]private int _maxLife = 100;
 
 
     #region iDamageable
 
-    public virtual void TakeDamage(float x)
+    public virtual void TakeDamage(int x)
     {
         throw new NotImplementedException();
     }

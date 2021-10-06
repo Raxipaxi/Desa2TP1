@@ -6,15 +6,13 @@ using UnityEngine;
 public class Missiles : ScriptableObject
 {
     #region SerializedFields
-    [SerializeField]protected float _damage;
+    [SerializeField]protected int _damage;
     [SerializeField]protected float _speed;
-    [SerializeField]protected MissilePref _missilePrefab;
     #endregion
 
     #region Properties
-    public float Damage => _damage;
+    public int Damage => _damage;
     public float Speed => _speed;
-    public MissilePref Missile => _missilePrefab;
     #endregion
 
 }

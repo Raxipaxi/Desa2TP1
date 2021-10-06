@@ -18,7 +18,7 @@ using UnityEngine;
         private void Start()
         {
             _transform = transform;
-            _nextFire = 0;
+           _nextFire = 0;
         }
         
         #endregion
@@ -49,5 +49,10 @@ using UnityEngine;
             _rb.velocity = Vector3.zero;
         }
         #endregion
+
+        void OnDie()
+        {
+            
+        }
 
     }

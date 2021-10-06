@@ -15,3 +15,5 @@ MonoBehaviour:
   _life: 100
   _speed: 10
   _shootCd: 1
+  _maxAmmo: 50
+  _initAmmo: 30

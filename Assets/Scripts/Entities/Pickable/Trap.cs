@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- public class Trap : Item
+ public class Trap : Item<Actor>
  {
      
      [SerializeField] private int _damage = 10;
@@ -18,7 +18,6 @@ using UnityEngine;
      {
          if (_picker.gameObject.layer == hittableMask)
          {
-             
              _picker.GetComponent<Actor>()?.TakeDamage(_damage); 
          }
          Resolve();

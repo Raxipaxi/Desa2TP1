@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider),typeof(Rigidbody))]
-public class MissilePref : MonoBehaviour
+public class MissilePref : MissileAbstract
 {
     #region Properties
-   private LayerMask hittableMask;
+    private LayerMask hittableMask;
     [SerializeField] private float _lifeTime = 3f;
     public Missiles _missile;
     
     private Collider _collider;
+    private Transform _transform;
     private Rigidbody _rigidbody;
     #endregion
     
@@ -20,6 +17,7 @@ public class MissilePref : MonoBehaviour
     {
         _collider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
+        _transform = transform;
 
         Init();
     }
@@ -31,11 +29,11 @@ public class MissilePref : MonoBehaviour
         
         //Rigidbody
         _rigidbody.isKinematic = true;
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+//        _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
     private void Update()
     {
-        transform.position += transform.forward * _missile.Speed * Time.deltaTime;
+        _transform.position += _transform.forward * _missile.Speed * Time.deltaTime;
         _lifeTime -= Time.deltaTime;
         if (_lifeTime<=0) Destroy(gameObject);
     }

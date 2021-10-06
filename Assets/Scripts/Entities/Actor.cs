@@ -5,22 +5,20 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour, IDamageable, iMobile
 {
-    public float CurrentLife => _life;
+    public int CurrentLife => _life;
     
-    [SerializeField]private float _life = 100;
+    [SerializeField]public int _life = 100;
 
-    public float MaxLife => _maxLife;
-    [SerializeField]private float _maxLife = 100;
+    public int MaxLife => _maxLife;
+    [SerializeField]public int _maxLife = 100;
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(int damage)
     {
         _life -= damage;
         
-        
-       // Debug.Log($"{name} remaining life {_life}");
         if (_life <=0)
         {
-           // Debug.Log($"{name} Died!!");
+           Die();
         }
     }
 
@@ -66,4 +64,6 @@ public class Actor : MonoBehaviour, IDamageable, iMobile
     {
         throw new NotImplementedException();
     }
+    
+    
 }

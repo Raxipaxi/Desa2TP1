@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de9a010d5800a9f4ea876e4deba8aa2f, type: 3}
-  m_Name: NormalMissile
+  m_Name: BossMissile
   m_EditorClassIdentifier: 
-  _damage: 20
-  _speed: 10
+  _damage: 30
+  _speed: 15

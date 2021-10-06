@@ -10,7 +10,6 @@ public class PlayerInput : MonoBehaviour,  iInput
     float _zAxis;
     [Header("The canon")]
     [SerializeField ]private Transform _canon;
-
     public float adjustSensitivity = 1000f;
 
     private Transform _transform;
@@ -19,9 +18,10 @@ public class PlayerInput : MonoBehaviour,  iInput
 
     #endregion
 
-    private void Start()
+  private void Start()
     {
         _camera = Camera.main;
+        
     }
     
     #region Methods
@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour,  iInput
 
     #endregion
 
-
+     
     public bool IsMoving()
     {
         return (_xAxis != 0 || _zAxis != 0);

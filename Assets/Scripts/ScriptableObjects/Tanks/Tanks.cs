@@ -4,14 +4,19 @@ using UnityEngine;
 public class Tanks : ScriptableObject
 {
     #region SerializedFields
-    [SerializeField]protected float _life;
+    [SerializeField]protected int _life;
     [SerializeField]protected float _speed;
-    [SerializeField]protected float _shootCd; // Cooldown
+    [SerializeField]protected float _shootCd;
+    [SerializeField]protected int _maxAmmo;
+    [SerializeField] protected int _initAmmo;
     #endregion
 
     #region Properties
-    public float Life => _life;
+    public int Life => _life;
     public float Speed => _speed;
     public float ShootCd => _shootCd;
+    public int MaxAmmo => _maxAmmo;
+    public int InitAmmo => _initAmmo;
+
     #endregion
 }

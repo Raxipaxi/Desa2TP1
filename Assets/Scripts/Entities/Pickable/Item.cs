@@ -2,48 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(SphereCollider))]
-public abstract class Item : MonoBehaviour, IPickable
+
+public abstract class Item<T> : MonoBehaviour, IPickable<T>
 {
     public string Name => _name;
     public string _name;
-    public Actor Owner => _owner;
-    public Actor _owner;
+    public T Owner => _owner;
+    public T _owner;
 
-    private SphereCollider _sphereCollider;
 
     public int hittableMask;
-    private float _radius;
+   
 
-    private void Awake()
-    {
-        _sphereCollider = GetComponent<SphereCollider>();
-    }
-
-    private void Start()
-    {
-        Init();
-    }
-
-    void Init()
-    {
-        _radius = transform.localScale.z;
-        _sphereCollider.radius = _radius;
-    }
-    
-
-    public virtual void BePicked(Actor _picker)
+    public virtual void BePicked(T _picker)
     {
         SetOwner(_picker);
-        transform.position = _owner.transform.position;
+        
     }
 
     public virtual void BeDropped()
     {
-        _owner = null;
+        throw new System.NotImplementedException();
     }
 
-    public bool IsInrange(Actor _picker)
+    public bool IsInrange(T _picker)
     {
         throw new System.NotImplementedException();
     }
@@ -53,14 +35,10 @@ public abstract class Item : MonoBehaviour, IPickable
         Debug.Log("Reloading");
     }
     
-    public virtual void SetOwner(Actor _picker)
+    public virtual void SetOwner(T _picker)
     {
         _owner = _picker;
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, _radius);
-    }
+
 }

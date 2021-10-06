@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2985826698750302041}
   - component: {fileID: 8991016070753423936}
+  - component: {fileID: 6604871476597407339}
   m_Layer: 0
   m_Name: AmmoBox
   m_TagString: Untagged
@@ -49,6 +50,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &6604871476597407339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525119870459687177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6119d7981d2b48c2a4f7227f18cf7806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: AmmoBox
+  _owner: {fileID: 0}
+  hittableMask: 0
 --- !u!1001 &2998123564428812688
 PrefabInstance:
   m_ObjectHideFlags: 0

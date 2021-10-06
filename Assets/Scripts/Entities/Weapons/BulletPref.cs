@@ -21,7 +21,6 @@ public class BulletPref : MonoBehaviour
     {
         _collider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
-
         Init();
     }
 
