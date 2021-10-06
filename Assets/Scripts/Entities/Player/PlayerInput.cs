@@ -36,6 +36,7 @@ public class PlayerInput : MonoBehaviour,  iInput
         var dir = _canon.position;
         _canon.forward = new Vector3(_mousePointer.x - dir.x, dir.y, _mousePointer.z - dir.z);
         _canon.rotation = Quaternion.Euler(0,_canon.eulerAngles.y,0);
+       
     }
 
     #endregion
