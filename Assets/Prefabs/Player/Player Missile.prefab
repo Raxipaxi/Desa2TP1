@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: PlayerMiss
+  hittableMask:
+    serializedVersion: 2
+    m_Bits: 8
   _lifeTime: 3
   _missile: {fileID: 11400000, guid: 5d9128ae1eb3cb043a4c5b868bcc23a9, type: 2}
 --- !u!1001 &8523196169718293694

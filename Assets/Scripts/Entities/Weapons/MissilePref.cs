@@ -4,7 +4,7 @@
 public class MissilePref : MissileAbstract
 {
     #region Properties
-    private LayerMask hittableMask;
+    public LayerMask hittableMask;
     [SerializeField] private float _lifeTime = 3f;
     public Missiles _missile;
     
@@ -29,7 +29,7 @@ public class MissilePref : MissileAbstract
         
         //Rigidbody
         _rigidbody.isKinematic = true;
-//        _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
     }
     private void Update()
     {
@@ -44,5 +44,10 @@ public class MissilePref : MissileAbstract
         { 
             other.GetComponent<Actor>()?.TakeDamage(_missile.Damage); 
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
