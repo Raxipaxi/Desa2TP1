@@ -23,12 +23,6 @@ public class EnemyPatrolState<T> : State<T>
     [SerializeField] private Transform[] _patrolPoints;
     private Transform _currpatrolPoint =null;
 
-
-    
-    // Line of Sight Parameters
-    public float range = 10;
-    public float angle = 90;
-
     #endregion
 
     public EnemyPatrolState(Enemy enemy, T inputIdle, iNode root, ObstacleAvoidance obs)
@@ -95,17 +89,5 @@ public class EnemyPatrolState<T> : State<T>
         
         return nearestPatrolpt;
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(_transform.position, range);
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(_transform.position, _transform.forward * range);
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(_transform.position, Quaternion.Euler(0, angle / 2, 0) * _transform.forward * range);
-        Gizmos.DrawRay(_transform.position, Quaternion.Euler(0, -angle / 2, 0) * _transform.forward * range);
-    }
-
-   
+    
 }

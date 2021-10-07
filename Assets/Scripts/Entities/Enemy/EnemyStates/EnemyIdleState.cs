@@ -23,13 +23,8 @@ public class EnemyIdleState<T> : State<T>
         if (_enemy.IsInSight())
         {
             _root.Execute();
-        }
-        CoroutineIdle();
-        _fsm.Transition(_inputPatrol);
+        
     }
 
-    IEnumerator CoroutineIdle()
-    {
-        yield return new WaitForSeconds(2);
-    }
+
 }
