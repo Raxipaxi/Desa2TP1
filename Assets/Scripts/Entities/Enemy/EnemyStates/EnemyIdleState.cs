@@ -23,7 +23,8 @@ public class EnemyIdleState<T> : State<T>
         if (_enemy.IsInSight())
         {
             _root.Execute();
-        
+        }
+
     }
 
 
