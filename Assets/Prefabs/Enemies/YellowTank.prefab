@@ -1,20 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2982730199245598502
-MonoBehaviour:
+--- !u!65 &1557727337
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2842983599486914017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1a4c795ca74e6eb0830bb1c2fcab75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _life: 100
-  _maxLife: 100
-  _tank: {fileID: 11400000, guid: b682bb1cd069bf246aa2347f53c4b048, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 1.9107852, y: 1.39, z: 2.6642036}
+  m_Center: {x: 0.0000003874302, y: 0.42, z: -0.038929284}
 --- !u!1 &4570805854763646068
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +22,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3284907020157198282}
+  - component: {fileID: 1580803613}
   m_Layer: 0
   m_Name: YellowTank
   m_TagString: Untagged
@@ -46,6 +45,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580803613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570805854763646068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a4c795ca74e6eb0830bb1c2fcab75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 100
+  _maxLife: 100
+  _tank: {fileID: 11400000, guid: b682bb1cd069bf246aa2347f53c4b048, type: 2}
+  _target: {fileID: 0}
+  range: 32.47
+  angle: 45.87
+  radiusObs: 0
+  multiplierObs: 0
+  maskObs:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2982730199583784955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,15 +85,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676515232765691307, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.58669
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1676515232765691307, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5848074
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1676515232765691307, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.771444
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1676515232765691307, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
       propertyPath: m_LocalRotation.w
