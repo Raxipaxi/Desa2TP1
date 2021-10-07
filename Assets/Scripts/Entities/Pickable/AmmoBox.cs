@@ -36,15 +36,12 @@ public class AmmoBox : Item<Player>
 
     private void OnTriggerEnter(Collider _picker)
     {
-        Debug.Log(_picker.name);   
-        Debug.Log(_picker.gameObject.layer);   
         if (_picker.gameObject.layer == hittableMask)
         {
-            if (_picker.GetComponent<Player>()!=null)
+            if (_picker.GetComponent<Player>() != null)
             {
                 BePicked(_picker.GetComponent<Player>());
             }
-           
         }
     }
 }
