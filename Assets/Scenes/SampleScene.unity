@@ -4242,7 +4242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 0
 --- !u!222 &1155910346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7518,18 +7518,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3684513964034334456, guid: b6abbe72fbc79684293e699b1570777c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3684513964034334456, guid: b6abbe72fbc79684293e699b1570777c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3684513964034334456, guid: b6abbe72fbc79684293e699b1570777c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4146419128064459946, guid: b6abbe72fbc79684293e699b1570777c, type: 3}
       propertyPath: m_Name
       value: BossTank
@@ -8273,6 +8261,10 @@ PrefabInstance:
     - target: {fileID: 2985826698750302041, guid: 1e9f1adef91818345a2446382aba04af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604871476597407339, guid: 1e9f1adef91818345a2446382aba04af, type: 3}
+      propertyPath: addammo
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6604871476597407339, guid: 1e9f1adef91818345a2446382aba04af, type: 3}
       propertyPath: hittableMask

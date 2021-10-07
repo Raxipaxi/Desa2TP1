@@ -70,4 +70,13 @@ public class ObstacleAvoidance : ISteering
         }
         return dir;
     }
+
+    public void SetTarget(Transform newTransform)
+    {
+        _target = newTransform;
+    }    
+    public void SetSelf(Transform newTransform)
+    {
+        _self = newTransform;
+    }
 }

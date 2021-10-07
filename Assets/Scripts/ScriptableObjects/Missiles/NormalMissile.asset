@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: NormalMissile
   m_EditorClassIdentifier: 
   _damage: 20
-  _speed: 20
+  _speed: 25

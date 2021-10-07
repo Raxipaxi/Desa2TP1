@@ -13,7 +13,8 @@ using UnityEngine;
         public Player _target;
 
         // Line of Sight Parameters
-    
+
+        private LineOfSight _lineOfSight;
         public float range = 10;
         public float angle = 90;
         
@@ -29,6 +30,7 @@ using UnityEngine;
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            _lineOfSight = GetComponent<LineOfSight>();
         }
         private void Start()
         {
@@ -74,26 +76,7 @@ using UnityEngine;
         // public bool IsInSight(Transform target)
         public bool IsInSight()
         {
-            Vector3 diff = _target.transform.position - transform.position;
-            float distance = diff.magnitude;
-            if (distance > range) return false;
-
-            Vector3 front = transform.forward;
-
-            if (!InAngle(diff, front)) return false;
-
-            if (!IsInView(diff.normalized, distance, maskObs)) return false;
-
-            return true;
-        }
-        bool InAngle(Vector3 from, Vector3 to)
-        {
-            float angleToTarget = Vector3.Angle(from, to);
-            return angleToTarget < angle / 2;
-        }
-        bool IsInView(Vector3 dirToTarget, float distance, LayerMask maskObstacle)
-        {
-            return !Physics.Raycast(transform.position, dirToTarget, distance, maskObstacle);
+            return _lineOfSight.IsInSight(_target.transform,transform, maskObs);
         }
     
         private void OnDrawGizmosSelected()

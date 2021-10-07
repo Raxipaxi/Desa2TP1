@@ -2,7 +2,7 @@
 using UnityEngine;
 public class AmmoBox : Item<Player>
 {
-    private int _addAmmo = 20;
+    public int addammo = 20;
     private Collider _collider;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class AmmoBox : Item<Player>
 
     public override void Resolve()
     {
-        _owner._ammo.PickAmmo(_addAmmo);
+        _owner._ammo.PickAmmo(addammo);
     }
 
     public override void SetOwner(Player _picker)

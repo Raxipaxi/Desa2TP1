@@ -15,17 +15,15 @@ public class EnemyPatrolState<T> : State<T>
     //
     private Vector3 _currDir;
     private Transform _transform;
-    private Transform _targetTransform;
-    
+  
     //--Obstacle avoidance
     ObstacleAvoidance _obs;
-    public float radiusObs; 
-    public float multiplierObs;
-    public LayerMask maskObs;
-    
+
     private ISteering _seek;
     [SerializeField] private Transform[] _patrolPoints;
     private Transform _currpatrolPoint =null;
+
+
     
     // Line of Sight Parameters
     public float range = 10;
@@ -33,15 +31,15 @@ public class EnemyPatrolState<T> : State<T>
 
     #endregion
 
-    public EnemyPatrolState(Enemy enemy, T inputIdle, iNode root)
+    public EnemyPatrolState(Enemy enemy, T inputIdle, iNode root, ObstacleAvoidance obs)
     {
         _enemy = enemy;
         _inputIdle = inputIdle;
         _root = root;
+        _obs = obs;
    
         _transform = _enemy.transform;
-        _targetTransform = _enemy._target.transform;
-
+  
     }
 
     public override void Awake()
@@ -51,7 +49,8 @@ public class EnemyPatrolState<T> : State<T>
         {
             _currpatrolPoint = NearestPatPoint();
             _seek = new Seek(_transform, _currpatrolPoint);
-            _obs = new ObstacleAvoidance(_transform, _currpatrolPoint, radiusObs, 5, multiplierObs, maskObs);
+            _obs.SetTarget(_currpatrolPoint);
+            _obs.SetSelf(_transform);
         }
     }
 
@@ -63,17 +62,17 @@ public class EnemyPatrolState<T> : State<T>
         _enemy.Walk(_currDir);
 
         // Checks if reach the patrol point or sees the player stops the patrol action
-        if (IsInSight() || Vector3.Distance(_transform.position, _currpatrolPoint.position)<0.2f)
+        if (_enemy.IsInSight() || Vector3.Distance(_transform.position, _currpatrolPoint.position)<0.2f)
         {
             _currpatrolPoint = null;
             _root.Execute(); 
         }
         
-        // if (!_enemy.Patrol())
-        // {
-        //     _root.Execute();
-        //     _fsm.Transition(_inputIdle); // Reaching a patrol point change to idle before Patrol again
-        // }
+        if (!_enemy.Patrol())
+        {
+            _root.Execute();
+            _fsm.Transition(_inputIdle); // Reaching a patrol point change to idle before Patrol again
+        }
        
         
     }
@@ -96,33 +95,7 @@ public class EnemyPatrolState<T> : State<T>
         
         return nearestPatrolpt;
     }
-    #region LineOfSight
 
-    // public bool IsInSight(Transform target)
-    public bool IsInSight() // ver de pasarlo a una clase
-    {
-        Vector3 diff = _targetTransform.position - _transform.position;
-        float distance = diff.magnitude;
-        if (distance > range) return false;
-
-        Vector3 front = _transform.forward;
-
-        if (!InAngle(diff, front)) return false;
-
-        if (!IsInView(diff.normalized, distance, maskObs)) return false;
-
-        return true;
-    }
-    bool InAngle(Vector3 from, Vector3 to)
-    {
-        float angleToTarget = Vector3.Angle(from, to);
-        return angleToTarget < angle / 2;
-    }
-    bool IsInView(Vector3 dirToTarget, float distance, LayerMask maskObstacle)
-    {
-        return !Physics.Raycast(_transform.position, dirToTarget, distance, maskObstacle);
-    }
-    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -134,5 +107,5 @@ public class EnemyPatrolState<T> : State<T>
         Gizmos.DrawRay(_transform.position, Quaternion.Euler(0, -angle / 2, 0) * _transform.forward * range);
     }
 
-    #endregion
+   
 }

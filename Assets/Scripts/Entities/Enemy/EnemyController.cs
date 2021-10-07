@@ -17,6 +17,14 @@ public class EnemyController : MonoBehaviour
    
     private ISteering _seek;
     private ISteering _chase;
+    
+    // -- Obstacle Avoidance Variables
+    public ObstacleAvoidance _obs;
+    public float radiusObs; 
+    public float multiplierObs;
+    public LayerMask maskObs;
+    public int maxObjects;
+
 
     #endregion
     void Awake()
@@ -25,20 +33,25 @@ public class EnemyController : MonoBehaviour
     }
     private void Start()
     {
+        InitObstacleAvoid();
         InitTree();
         FsmInit();
         
     }
 
+    void InitObstacleAvoid()
+    {
+        _obs = new ObstacleAvoidance(transform, target.transform, radiusObs, maxObjects, multiplierObs, maskObs);
+    }
     #region FSM
     private void FsmInit()
     {
         //--------------- FSM Creation -------------------//     
         //------States creation
         var idle = new EnemyIdleState<EnemyStates>(_enemy, EnemyStates.Patrol,_root);
-        var patrol = new EnemyPatrolState<EnemyStates>(_enemy,EnemyStates.Idle, _root);
-        var follow = new EnemyFollowState<EnemyStates>(_enemy,EnemyStates.Patrol, _root);
-        var attack = new EnemyAttackState<EnemyStates>(_enemy);
+        var patrol = new EnemyPatrolState<EnemyStates>(_enemy,EnemyStates.Idle, _root, _obs);
+        var follow = new EnemyFollowState<EnemyStates>(_enemy,EnemyStates.Patrol, _root, _obs);
+        var attack = new EnemyAttackState<EnemyStates>(_enemy, _root);
         
         //------ Idle
         idle.AddTransition(EnemyStates.Chase, follow);
