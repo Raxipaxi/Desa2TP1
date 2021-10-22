@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPatrolState<T> : State<T>
 {
     #region Properties
 
-    private T _inputIdle;
+    //private T _inputIdle;
     private Enemy _enemy;
     private iNode _root;
     
@@ -20,17 +18,18 @@ public class EnemyPatrolState<T> : State<T>
     ObstacleAvoidance _obs;
 
     private ISteering _seek;
-    [SerializeField] private Transform[] _patrolPoints;
+    private Transform[] _patrolPoints;
     private Transform _currpatrolPoint =null;
 
     #endregion
 
-    public EnemyPatrolState(Enemy enemy, T inputIdle, iNode root, ObstacleAvoidance obs)
+    public EnemyPatrolState(Enemy enemy, T inputIdle, iNode root, ObstacleAvoidance obs, Transform[] patrolPoints)
     {
         _enemy = enemy;
-        _inputIdle = inputIdle;
+        //_inputIdle = inputIdle;
         _root = root;
         _obs = obs;
+        _patrolPoints = patrolPoints;
    
         _transform = _enemy.transform;
   
@@ -65,7 +64,7 @@ public class EnemyPatrolState<T> : State<T>
         if (!_enemy.Patrol())
         {
             _root.Execute();
-            _fsm.Transition(_inputIdle); // Reaching a patrol point change to idle before Patrol again
+           // _fsm.Transition(_inputIdle); // Reaching a patrol point change to idle before Patrol again
         }
        
         

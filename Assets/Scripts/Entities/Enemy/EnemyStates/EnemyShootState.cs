@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-public class EnemyAttackState<T> : State<T>
+public class EnemyShootState<T> : State<T>
 {
     #region Properties
     private Enemy _enemy;
@@ -9,7 +9,7 @@ public class EnemyAttackState<T> : State<T>
     
   
     #endregion
-    public EnemyAttackState(Enemy enemy, iNode root)
+    public EnemyShootState(Enemy enemy, iNode root)
     {
         _enemy = enemy;
         _root = root;

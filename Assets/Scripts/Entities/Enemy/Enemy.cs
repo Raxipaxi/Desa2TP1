@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
     public class Enemy : Actor
     {
         #region Properties
@@ -11,7 +8,7 @@ using UnityEngine;
         public Tanks _tank;
         private float _nextFire;
         public Player _target;
-
+        
         // Line of Sight Parameters
 
         private LineOfSight _lineOfSight;
@@ -20,9 +17,6 @@ using UnityEngine;
         
         //Steering Variables
         //--Obstacle avoidance
-        ObstacleAvoidance _obs;
-        public float radiusObs; 
-        public float multiplierObs;
         public LayerMask maskObs;
         
         #endregion
@@ -31,11 +25,12 @@ using UnityEngine;
         {
             _rb = GetComponent<Rigidbody>();
             _lineOfSight = GetComponent<LineOfSight>();
+            
         }
         private void Start()
-        {
+        { 
             _transform = transform;
-           _nextFire = 0;
+            _nextFire = 0;
         }
         
         #endregion
@@ -76,7 +71,7 @@ using UnityEngine;
         // public bool IsInSight(Transform target)
         public bool IsInSight()
         {
-            return _lineOfSight.IsInSight(_target.transform,transform, maskObs);
+            return _lineOfSight.IsInSight(_target.transform,transform, maskObs,range,angle);
         }
     
         private void OnDrawGizmosSelected()
@@ -89,6 +84,12 @@ using UnityEngine;
             Gizmos.DrawRay(transform.position, Quaternion.Euler(0, angle / 2, 0) * transform.forward * range);
             Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -angle / 2, 0) * transform.forward * range);
         }
+
+        public LayerMask GetMaskObs()
+        {
+            return maskObs;
+        }
+        
 
         #endregion
 

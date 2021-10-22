@@ -15,7 +15,6 @@ public class Player : Actor
     private float _nextFire;
     public AmmoManager _ammo;
     public MissileFactory _ammoFactory;
-    
     #endregion
 
     #region MyRegion
@@ -89,10 +88,5 @@ public class Player : Actor
     public float GetSpeed()
     {
         return _tank.Speed;
-    }
-
-    public AmmoManager GetAmmoM()
-    {
-        return _ammo;
     }
 }

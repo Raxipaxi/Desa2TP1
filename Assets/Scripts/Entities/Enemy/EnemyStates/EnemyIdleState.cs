@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyIdleState<T> : State<T>
 {
-    private T _inputPatrol;
-    private T _inputFollow;
+    //private T _inputPatrol;
+   // private T _inputFollow;
     private Enemy _enemy;
     private iNode _root;
 
@@ -13,17 +13,15 @@ public class EnemyIdleState<T> : State<T>
     {
         _enemy = enemy;
         _root = root;
-        _inputPatrol = inputPatrol;
-        this._inputFollow = _inputFollow;
+        //_inputPatrol = inputPatrol;
     }
 
     public override void Execute()
     {
         _enemy.Idle();
-        if (_enemy.IsInSight())
-        {
-            _root.Execute();
-        }
+
+        _root.Execute();
+ 
 
     }
 

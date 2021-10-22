@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour,  iInput
      
     public bool IsMoving()
     {
-        return (_xAxis != 0 || _zAxis != 0);
+        return (GetH != 0 || GetV != 0);
     }
 
     public bool IsShooting()

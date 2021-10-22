@@ -2,27 +2,30 @@
 
 public class EnemyController : MonoBehaviour
 {
-    
-
     #region Properties
 
     [SerializeField] private float attackRange;
-
-    [SerializeField] private Player target;
+    
+    //Target Transform
+    private Player Target => _enemy._target;
+    
     // Decision Tree and FSM Variables 
     private FSM<EnemyStates> _fsm;
     Enemy _enemy;
     iNode _root;
 
-   
+   // Steering Behavior
     private ISteering _seek;
     private ISteering _chase;
     
+    // Patrol State parameters
+    [SerializeField] public Transform[] patrolPoints;
+    
     // -- Obstacle Avoidance Variables
-    public ObstacleAvoidance _obs;
+    public ObstacleAvoidance Obs;
     public float radiusObs; 
     public float multiplierObs;
-    public LayerMask maskObs;
+    private  LayerMask MaskObs => _enemy.GetMaskObs();
     public int maxObjects;
 
 
@@ -41,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
     void InitObstacleAvoid()
     {
-        _obs = new ObstacleAvoidance(transform, target.transform, radiusObs, maxObjects, multiplierObs, maskObs);
+        Obs = new ObstacleAvoidance(transform, Target.transform, radiusObs, maxObjects, multiplierObs, MaskObs);
     }
     #region FSM
     private void FsmInit()
@@ -49,25 +52,30 @@ public class EnemyController : MonoBehaviour
         //--------------- FSM Creation -------------------//     
         //------States creation
         var idle = new EnemyIdleState<EnemyStates>(_enemy, EnemyStates.Patrol,_root);
-        var patrol = new EnemyPatrolState<EnemyStates>(_enemy,EnemyStates.Idle, _root, _obs);
-        var follow = new EnemyFollowState<EnemyStates>(_enemy,EnemyStates.Patrol, _root, _obs);
-        var attack = new EnemyAttackState<EnemyStates>(_enemy, _root);
+        var patrol = new EnemyPatrolState<EnemyStates>(_enemy,EnemyStates.Idle, _root, Obs, patrolPoints);
+        var follow = new EnemyFollowState<EnemyStates>(_enemy,EnemyStates.Patrol, _root, Obs);
+        var shoot = new EnemyShootState<EnemyStates>(_enemy, _root);
         
         //------ Idle
         idle.AddTransition(EnemyStates.Chase, follow);
         idle.AddTransition(EnemyStates.Patrol, patrol);
+        idle.AddTransition(EnemyStates.Shoot,shoot);
      
         //------ Follow -- 
         follow.AddTransition(EnemyStates.Patrol, patrol);
-        follow.AddTransition(EnemyStates.Shoot, attack);
+        follow.AddTransition(EnemyStates.Idle,idle);
+        follow.AddTransition(EnemyStates.Shoot, shoot);
+        
        
         // ----- Patrol ---
         patrol.AddTransition(EnemyStates.Idle, idle);
         patrol.AddTransition(EnemyStates.Chase,follow);
+        patrol.AddTransition(EnemyStates.Shoot,shoot);
         
         // ----- Attack ---
-        attack.AddTransition(EnemyStates.Chase, follow);
-        attack.AddTransition(EnemyStates.Patrol, patrol);
+        shoot.AddTransition(EnemyStates.Chase, follow);
+        shoot.AddTransition(EnemyStates.Patrol, patrol);
+        shoot.AddTransition(EnemyStates.Idle,idle);
         
         
         _fsm = new FSM<EnemyStates>();
@@ -98,6 +106,7 @@ public class EnemyController : MonoBehaviour
     #region Questions
     bool IsInSight()
     {
+        Debug.Log("Te pillé" + _enemy.IsInSight());
         return _enemy.IsInSight();
     }
 
@@ -108,7 +117,7 @@ public class EnemyController : MonoBehaviour
 
     bool IsInRange()
     {
-        return (Vector3.Distance(transform.position, target.transform.position) < attackRange);
+        return (Vector3.Distance(transform.position, Target.transform.position) < attackRange);
     }
 
     #endregion
@@ -117,7 +126,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (target != null) 
+        if (Target != null) 
         {
             _fsm.OnUpdate();
         }
