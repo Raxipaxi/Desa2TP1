@@ -28,15 +28,9 @@ public class EnemyFollowState<T> : State<T>
 
     public override void Execute()
     {
-        if (_enemy.IsInSight()) // 
-        {
-            _enemy.Move(Chase(),_enemy._tank.Speed);
-            _root.Execute();
-        }
-        else
-        {
-            _fsm.Transition(_inputPatrol);
-        }
+        _enemy.Move(Chase(),_enemy._tank.Speed);
+        _root.Execute();
+
     }
     private Vector3 Chase()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowTank
   m_EditorClassIdentifier: 
   _life: 95
-  _speed: 10
+  _speed: 20
   _shootCd: 2
   _maxAmmo: 1000
   _initAmmo: 1000
