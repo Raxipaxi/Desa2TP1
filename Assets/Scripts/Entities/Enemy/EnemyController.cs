@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private FSM<EnemyStates> _fsm;
     Enemy _enemy;
     iNode _root;
+    
+    bool isInRange => Vector3.Distance(transform.position, Target.transform.position) < attackRange;
 
    // Steering Behavior
     private ISteering _seek;
@@ -28,6 +30,7 @@ public class EnemyController : MonoBehaviour
     private  LayerMask MaskObs => _enemy.GetMaskObs();
     public int maxObjects;
 
+    
 
     #endregion
     void Awake()
@@ -106,7 +109,7 @@ public class EnemyController : MonoBehaviour
     #region Questions
     bool IsInSight()
     {
-        Debug.Log("Te pillé" + _enemy.IsInSight());
+       // Debug.Log("Te pillé" + _enemy.IsInSight());
         return _enemy.IsInSight();
     }
 
@@ -117,7 +120,9 @@ public class EnemyController : MonoBehaviour
 
     bool IsInRange()
     {
-        return (Vector3.Distance(transform.position, Target.transform.position) < attackRange);
+      //  Debug.Log("Pew Pew :  "+ isInRange + "  " + IsInSight() );
+        return isInRange&&IsInSight();
+        // return ((Vector3.Distance(transform.position, Target.transform.position) < attackRange)&&IsInSight());
     }
 
     #endregion

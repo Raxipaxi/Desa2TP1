@@ -41,11 +41,19 @@
             dir *= speed;
             dir.y = _rb.velocity.y;
             _rb.velocity = dir;
+            LookAt(dir);
             
         }
+
+        public float GetSpeed()
+        {
+            return _tank.Speed;
+        }
+        
+        
         public void LookAt(Vector3 dir)
         {
-            _transform.forward = dir.normalized;
+            _transform.forward = dir;
         }
         public void Attack()
         {

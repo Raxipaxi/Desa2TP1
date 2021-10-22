@@ -30,4 +30,5 @@ public class FSM<T>
             _current.Awake();
         }
     }
+    
 }
