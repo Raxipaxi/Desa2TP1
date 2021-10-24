@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        _ammoUI.SetMaxAmmo(_player._tank.MaxAmmo);
-        _ammoUI.SetCurrAmmo(_player._tank.InitAmmo);
+        _ammoUI.SetMaxAmmo(_player.tank.MaxAmmo);
+        _ammoUI.SetCurrAmmo(_player.tank.InitAmmo);
         _healthUI.InitSlider(_player.MaxLife);
         Subscribe();
     }

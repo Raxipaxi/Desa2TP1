@@ -21,14 +21,14 @@ public class EnemyFollowState<T> : State<T>
         _enemy = enemy;
         _root = root;
         _inputPatrol = inputPatrol;
-        _target = _enemy._target.transform;
+        _target = _enemy.target.transform;
         _transform = _enemy.transform;
         _obstacleAvoidance = obs;
     }
 
     public override void Execute()
     {
-        _enemy.Move(Chase(),_enemy._tank.Speed);
+        _enemy.Move(Chase(),_enemy.tank.Speed);
         _root.Execute();
 
     }

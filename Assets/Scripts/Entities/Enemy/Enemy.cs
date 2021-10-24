@@ -5,9 +5,9 @@
 
         private Transform _transform;
         private Rigidbody _rb;
-        public Tanks _tank;
+        public Tanks tank;
         private float _nextFire;
-        public Player _target;
+        public Player target;
         
         // Line of Sight Parameters
 
@@ -23,6 +23,7 @@
         #region Unity methods
         private void Awake()
         {
+            SetLife(tank.Life,tank.Life);
             _rb = GetComponent<Rigidbody>();
             _lineOfSight = GetComponent<LineOfSight>();
             
@@ -47,7 +48,7 @@
 
         public float GetSpeed()
         {
-            return _tank.Speed;
+            return tank.Speed;
         }
         
         
@@ -60,7 +61,7 @@
             if (Time.time > _nextFire)
             {
                 Debug.Log("si");
-                _nextFire = Time.time + _tank.ShootCd;
+                _nextFire = Time.time + tank.ShootCd;
             }
         }
         
@@ -79,7 +80,7 @@
         // public bool IsInSight(Transform target)
         public bool IsInSight()
         {
-            return _lineOfSight.IsInSight(_target.transform,transform, maskObs,range,angle);
+            return _lineOfSight.IsInSight(target.transform,transform, maskObs,range,angle);
         }
     
         private void OnDrawGizmosSelected()

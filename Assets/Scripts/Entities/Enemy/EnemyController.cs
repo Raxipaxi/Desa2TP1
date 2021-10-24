@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange;
     
     //Target Transform
-    private Player Target => _enemy._target;
+    private Player Target => _enemy.target;
     
     // Decision Tree and FSM Variables 
     private FSM<EnemyStates> _fsm;

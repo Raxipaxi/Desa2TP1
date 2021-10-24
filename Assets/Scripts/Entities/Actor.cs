@@ -7,11 +7,16 @@ public class Actor : MonoBehaviour, IDamageable, iMobile
 {
     public int CurrentLife => _life;
     
-    [SerializeField]public int _life = 100;
-
+    public int _life = 100;
+    
     public int MaxLife => _maxLife;
-    [SerializeField]public int _maxLife = 100;
+    public int _maxLife = 100;
 
+    public void SetLife(int maxLife, int life)
+    {
+        _life = life;
+        _maxLife = maxLife;
+    }
     public virtual void TakeDamage(int damage)
     {
         _life -= damage;
@@ -22,6 +27,7 @@ public class Actor : MonoBehaviour, IDamageable, iMobile
         }
     }
 
+    
     public virtual void RecoverLife(int _heal)
     {
         _life += _heal;

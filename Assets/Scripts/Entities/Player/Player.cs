@@ -11,7 +11,7 @@ public class Player : Actor
     private Transform _transform; 
     private Rigidbody _rb;
     
-    public Tanks _tank;
+    public Tanks tank;
     private float _nextFire;
     public AmmoManager _ammo;
     public MissileFactory _ammoFactory;
@@ -29,7 +29,8 @@ public class Player : Actor
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _ammo = new AmmoManager(_tank.MaxAmmo, _tank.InitAmmo);
+        _ammo = new AmmoManager(tank.MaxAmmo, tank.InitAmmo);
+        SetLife(tank.Life,tank.Life);
     }
 
     private void Start()
@@ -58,7 +59,7 @@ public class Player : Actor
             _ammo.UseAmmo(1);
             var missile = _ammoFactory.Create(MissilesID.PlayerMiss, canon);
             missile.transform.forward = canon.forward;
-            _nextFire = Time.time + _tank.ShootCd;
+            _nextFire = Time.time + tank.ShootCd;
         }
     }
 
@@ -87,6 +88,6 @@ public class Player : Actor
 
     public float GetSpeed()
     {
-        return _tank.Speed;
+        return tank.Speed;
     }
 }
